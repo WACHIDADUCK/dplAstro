@@ -1,0 +1,26 @@
+---
+import Gato from "../components/Gato.jsx";
+
+async function getGatos() {
+    try {
+        const response = await fetch("https://freetestapi.com/api/v1/cats");
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching gatos:", error);
+    }
+}
+
+let gatos = await getGatos();
+console.log(gatos);
+
+---
+
+<div>
+    <a href="/"><h2>Volver </h1></a>
+    {
+        gatos.map((gato) => (
+            <Gato gato={gato} />
+        ))
+    }
+</div>
